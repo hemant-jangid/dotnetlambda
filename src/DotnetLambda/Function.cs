@@ -19,11 +19,12 @@ namespace DotnetLambda
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public Casing FunctionHandler(string input, ILambdaContext context)
+        public Casing FunctionHandler(Input input, ILambdaContext context)
         {
-            return new Casing(input?.ToLower(), input?.ToUpper());
+            return new Casing(input?.Name1.ToLower(), input?.Name2.ToUpper());
         }
     }
 
+    public record Input(string Name1, string Name2);
     public record Casing(string Lower, string Upper);
 }
