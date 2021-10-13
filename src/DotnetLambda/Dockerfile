@@ -18,6 +18,9 @@ RUN dotnet publish "DotnetLambda.csproj" \
             -p:PublishReadyToRun=true  
 
 FROM base AS final
+RUN yum install -y amazon-linux-extras
+RUN amazon-linux-extras install epel -y
+RUN yum install -y libgdiplus
 WORKDIR /var/task
 COPY --from=publish /app/publish .
 CMD ["DotnetLambda::DotnetLambda.Function::FunctionHandler"]
